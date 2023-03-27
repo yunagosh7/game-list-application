@@ -13,10 +13,25 @@ class GamesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemGameBinding.bind(view)
 
 
-    fun bind(gameView: GameDataModel) {
+    fun bind(gameItem: GameDataModel, listeners: OnItemsClickListeners ) {
 
-        binding.tvName.text = gameView.name
-        binding.tvDesc.text = gameView.desc
-        Picasso.get().load(gameView.image).into(binding.ivImage)
+        binding.tvName.text = gameItem.name
+        binding.tvDesc.text = gameItem.desc
+        Picasso.get().load(gameItem.image).into(binding.ivImage)
+
+        val icon = if(gameItem.platform == "PC (Windows)") {
+            R.drawable.ic_windows
+        } else {
+            R.drawable.ic_web
+        }
+
+        binding.ivPlatform.setImageResource(icon)
+        binding.container.setOnClickListener {
+            listeners.onItemSelected(gameItem.id.toString())
+        }
+
+        binding.ivAdd.setOnClickListener {
+            listeners.addItem(gameItem)
+        }
     }
 }

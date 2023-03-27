@@ -1,17 +1,16 @@
 package com.example.gamelist.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.LinearLayoutCompat
+import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.gamelist.R
 import com.example.gamelist.adapter.GamesAdapter
+import com.example.gamelist.adapter.OnItemsClickListeners
 import com.example.gamelist.databinding.ActivityMainBinding
+import com.example.gamelist.model.GameDataModel
 import com.example.gamelist.viewmodel.GamesViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -32,15 +31,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        viewModel.gameList.observe(this, Observer {
-            gamesAdapter = GamesAdapter(it)
+        viewModel.gameList.observe(this, Observer {gameList ->
+            gamesAdapter = GamesAdapter(gameList, object: OnItemsClickListeners {
+                override fun onItemSelected(id: String) {
+                    navigateToDetail(id)
+                }
+
+                override fun addItem(gameItem: GameDataModel) {
+                    addGame(gameItem)
+                }
+            })
+
             binding.rvGames.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             binding.rvGames.adapter = gamesAdapter
         })
-
-
     }
 
+    private fun navigateToDetail(id: String) {
+        val intent = Intent(this, GameDetailActivity::class.java)
+        intent.putExtra(GameDetailActivity.EXTRA_ID, id)
+        startActivity(intent)
+    }
+
+    private fun addGame(gameItem: GameDataModel) {
+        Toast.makeText(this, "Añadir funcionalidad, ${gameItem.name}", Toast.LENGTH_SHORT).show()
+    }
 
 
 }
