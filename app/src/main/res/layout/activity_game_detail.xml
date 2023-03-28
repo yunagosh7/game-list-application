@@ -1,9 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.GameDetailActivity">
+    android:padding="16dp"
+    android:background="@color/background_color"
+    tools:context=".view.GameDetailActivity"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/iv_game_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:background="@color/teal_200"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_game_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        tools:text="Call of Duty: Warzone"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/tv_game_genres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        android:textColor="@color/detail_text"
+        tools:text="Genre: shooter"/>
+
+    <TextView
+        android:id="@+id/tv_released_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:textColor="@color/detail_text"
+        tools:text="Release date: 2020-03-10"/>
+    
+    <TextView
+        android:id="@+id/tv_screenshots_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textAlignment="center"
+        tools:text="Call of Duty: Warzone Screenshots"
+        android:textSize="20sp"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/iv_screenshot_selected"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="25dp"
+        tools:background="@color/teal_200"
+        android:scaleType="centerCrop" />
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_screenshots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+
+</LinearLayout>

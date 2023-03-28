@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamelist.adapter.GamesAdapter
 import com.example.gamelist.adapter.OnItemsClickListeners
 import com.example.gamelist.databinding.ActivityMainBinding
-import com.example.gamelist.model.GameDataModel
+import com.example.gamelist.model.GameItemListModel
 import com.example.gamelist.viewmodel.GamesViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     navigateToDetail(id)
                 }
 
-                override fun addItem(gameItem: GameDataModel) {
+                override fun addItem(gameItem: GameItemListModel) {
                     addGame(gameItem)
                 }
             })
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun addGame(gameItem: GameDataModel) {
+    private fun addGame(gameItem: GameItemListModel) {
         Toast.makeText(this, "Añadir funcionalidad, ${gameItem.name}", Toast.LENGTH_SHORT).show()
     }
 

@@ -1,11 +1,10 @@
 package com.example.gamelist.adapter
 
 import android.view.View
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelist.R
 import com.example.gamelist.databinding.ItemGameBinding
-import com.example.gamelist.model.GameDataModel
+import com.example.gamelist.model.GameItemListModel
 import com.squareup.picasso.Picasso
 
 class GamesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -13,7 +12,7 @@ class GamesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemGameBinding.bind(view)
 
 
-    fun bind(gameItem: GameDataModel, listeners: OnItemsClickListeners ) {
+    fun bind(gameItem: GameItemListModel, listeners: OnItemsClickListeners ) {
 
         binding.tvName.text = gameItem.name
         binding.tvDesc.text = gameItem.desc

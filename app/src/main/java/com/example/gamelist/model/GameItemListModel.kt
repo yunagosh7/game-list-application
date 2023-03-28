@@ -2,7 +2,7 @@ package com.example.gamelist.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GameDataModel(
+data class GameItemListModel(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val name: String,
     @SerializedName("thumbnail") val image: String,

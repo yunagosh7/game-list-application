@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelist.R
-import com.example.gamelist.model.GameDataModel
+import com.example.gamelist.model.GameItemListModel
 
 interface OnItemsClickListeners {
     fun onItemSelected(id: String)
-    fun addItem(gameItem: GameDataModel)
+    fun addItem(gameItem: GameItemListModel)
 }
 
 
 class GamesAdapter(
-    private var gameList: List<GameDataModel> = emptyList(),
+    private var gameList: List<GameItemListModel> = emptyList(),
     private val listeners: OnItemsClickListeners
 ) : RecyclerView.Adapter<GamesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesViewHolder {
