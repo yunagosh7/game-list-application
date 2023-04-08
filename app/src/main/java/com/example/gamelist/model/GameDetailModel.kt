@@ -11,5 +11,6 @@ data class GameDetailModel (
         )
 
 data class GameScreenshot (
-    @SerializedName("image") val url: String
+    @SerializedName("image") val url: String,
+    var isSelected: Boolean = false
         )

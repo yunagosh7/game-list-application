@@ -2,27 +2,25 @@ package com.example.gamelist.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamelist.R
 import com.example.gamelist.adapter.GameDetailScreenshotsAdapter
-import com.example.gamelist.adapter.GameDetailScreenshotsViewHolder
 import com.example.gamelist.databinding.ActivityGameDetailBinding
 import com.example.gamelist.model.GameDetailModel
-import com.example.gamelist.network.GamesApi
 import com.example.gamelist.viewmodel.GameDetailViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
 
 class GameDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameDetailBinding
     private lateinit var adapter: GameDetailScreenshotsAdapter
     private lateinit var viewModel: GameDetailViewModel
+
+    private lateinit var imageSelected: String
 
     companion object {
         const val EXTRA_ID = "extra_id"
@@ -49,7 +47,10 @@ class GameDetailActivity : AppCompatActivity() {
         binding.tvGameGenres.text = gameDetails.genres
         binding.tvReleasedDate.text = gameDetails.releaseDate
         binding.tvScreenshotsName.text = getString(R.string.screenshots_name, gameDetails.name)
-        adapter = GameDetailScreenshotsAdapter(gameDetails.screenshots)
+        Picasso.get().load(gameDetails.screenshots[0].url).into(binding.ivScreenshotSelected)
+        adapter = GameDetailScreenshotsAdapter(gameDetails.screenshots) {
+            setImageSelected(it)
+        }
         binding.rvScreenshots.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvScreenshots.adapter = adapter
 
@@ -59,6 +60,10 @@ class GameDetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getGameInfo(id)
         }
+    }
+
+    private fun setImageSelected(imageUrl: String) {
+        Picasso.get().load(imageUrl).into(binding.ivScreenshotSelected)
     }
 
 

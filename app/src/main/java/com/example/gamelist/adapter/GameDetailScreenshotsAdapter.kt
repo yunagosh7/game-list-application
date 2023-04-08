@@ -1,13 +1,20 @@
 package com.example.gamelist.adapter
 
-import android.text.Layout
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamelist.R
 import com.example.gamelist.model.GameScreenshot
 
-class GameDetailScreenshotsAdapter(private var screenshots: List<GameScreenshot> = emptyList()) : RecyclerView.Adapter<GameDetailScreenshotsViewHolder>() {
+var itemSelected = 0
+
+class GameDetailScreenshotsAdapter(
+    private var screenshots: List<GameScreenshot> = emptyList(),
+    private val onItemSelected: (String) -> Unit
+) : RecyclerView.Adapter<GameDetailScreenshotsViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -19,6 +26,6 @@ class GameDetailScreenshotsAdapter(private var screenshots: List<GameScreenshot>
     override fun getItemCount() = screenshots.size
 
     override fun onBindViewHolder(holder: GameDetailScreenshotsViewHolder, position: Int) {
-        holder.bind(screenshots[position])
+        holder.bind(screenshots[position], onItemSelected)
     }
 }
